@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chartJS</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; }
+        
+        
+    .grafico {    
+    position: relative;   
+    flex: 1;
+    min-width: 0;
+    height: 40vh;   }
+    .view {
+    display: flex;
+    gap: 20px;
+}
+    </style>
+</head>
+<body>
+ 
+    <div class="view">
+    <div class="grafico">
+        <canvas id="graficoLinhas"></canvas>
+        </div>
+         <div class="grafico">
+        <canvas id="graficoBarras"></canvas>
+    </div>
+    </div>
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
+<script>
+ 
+ 
+  new Chart(document.getElementById('graficoLinhas'), {
+    type: 'line',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [
+        {
+          label: 'Temperatura (°C)',
+          data: [30, 29, 28, 25, 22, 23],
+          borderColor: 'blue',
+          backgroundColor: 'blue',
+          borderWidth: 2,
+          tension: 0.3
+        },
+        {
+          label: 'Umidade (%)',
+          data: [80, 82, 80, 85, 80, 83],
+          borderColor: 'cyan',
+          backgroundColor: 'cyan',
+          borderWidth: 2,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        title: { display: true, text: 'Temperatura e umidade por horário' }
+      },
+      scales: {
+        x: { title: { display: true, text: 'Horário' } },
+        y: { beginAtZero: true, max: 100, title: { display: true, text: 'Valor' } }
+      }
+    }
+  });
+ 
+ 
+  new Chart(document.getElementById('graficoBarras'), {
+    type: 'bar',
+    data: {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [
+        {
+          label: 'Temperatura média (°C)',
+          data: [22, 24, 27, 23, 20, 18],
+          backgroundColor: 'blue',
+          borderWidth: 1
+        },
+        {
+          label: 'Umidade média (%)',
+          data: [90, 89, 93, 87, 88, 82],
+          backgroundColor: 'cyan',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        title: { display: true, text: 'Temperatura e umidade médias por mês' }
+      },
+      scales: {
+        x: { title: { display: true, text: 'Mês' } },
+        y: { beginAtZero: true, title: { display: true, text: 'Valor' } }
+      }
+    }
+  });
+</script>
